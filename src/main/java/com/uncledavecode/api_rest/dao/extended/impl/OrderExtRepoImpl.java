@@ -37,11 +37,11 @@ public class OrderExtRepoImpl implements OrderExtRepo {
                 from
                     Order ord
                 where
-                    (:filter = 1 and ord.orderNumber = :orderNumber) or
+                    ((:filter = 1 and ord.orderNumber = :orderNumber) or
                     (:filter = 2 and ord.orderDate between :since and :until) or
                     (:filter = 3 and ord.deliveryDate between :since and :until) or
-                    (:filter = 4 and ord.status = :status) or
-                    (:filter = 5 and ord.customer.id = :customerId)
+                    (:filter = 4 and ord.status = :status)) and
+                    (ord.customer.id = :customerId)
                 """;
         TypedQuery<OrderDTO> typedQuery = entityManager.createQuery(query, OrderDTO.class)
                 .unwrap(Query.class)
@@ -72,11 +72,11 @@ public class OrderExtRepoImpl implements OrderExtRepo {
                 from
                     Order ord
                 where
-                    (:filter = 1 and ord.orderNumber = :orderNumber) or
+                    ((:filter = 1 and ord.orderNumber = :orderNumber) or
                     (:filter = 2 and ord.orderDate between :since and :until) or
                     (:filter = 3 and ord.deliveryDate between :since and :until) or
-                    (:filter = 4 and ord.status = :status) or
-                    (:filter = 5 and ord.customer.id = :customerId)
+                    (:filter = 4 and ord.status = :status)) and
+                    (ord.customer.id = :customerId)
                 """;
         TypedQuery<Long> typedQuery = entityManager.createQuery(query, Long.class)
                 .unwrap(Query.class);
