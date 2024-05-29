@@ -118,4 +118,11 @@ public class OrderController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @GetMapping("/echo")
+    public ResponseEntity<String> echo() {
+        return ResponseEntity.ok("echo from orders v1");
+    }
+
+
 }
